@@ -6,14 +6,22 @@
 
 <!-- Padding attribute gives the ios-outline look -->
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" 
+  <ion-searchbar (ionInput)="getFilteredItems($event)" 
   placeholder="Find item.."></ion-searchbar>
 <ion-list>
-  <ion-item *ngFor="let item of stores | async">
-    {{ item.name }}
-    <ion-note item-right><ion-icon name="photos">{{item.aisle}}</ion-icon> 
-    <ion-icon name="basket">{{item.bin}}</ion-icon>
-    </ion-note>
+  <ion-item *ngFor="let item of filteredItems" text-wrap>
+   <ion-thumbnail *ngIf="item.thumbnail" item-left>
+       <img src="{{item.thumbnail}}" />
+   </ion-thumbnail>
+ {{ item.name }}
+  
+   <ion-icon name="photos">{{item.aisle}}</ion-icon> 
+      <ion-icon name="basket">{{item.bin}}</ion-icon>
+      <p>
+    <ion-note style="font-size:0.8em;">{{item.notes}}</ion-note>
+     </p>
   </ion-item>
 </ion-list>
+
+<span *ngFor="let item of items | async">{{item.name}}, </span>
 </ion-content>

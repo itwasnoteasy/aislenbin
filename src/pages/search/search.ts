@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -8,21 +10,39 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
   templateUrl: 'search.html'
 })
 export class SearchPage {
-    stores: FirebaseListObservable<any>;
+    items: FirebaseListObservable<Item[]>;
+    filteredItems: Array<Item>;
     
     constructor(public navCtrl: NavController, af: AngularFire) {
-        this.stores = af.database.list('stores/0/items');
+        
+        this.items = af.database.list('stores/0/items');
     }
     
-    getItems(ev) {
+    /*
+    ngOnInit(){
+      this.jobs = this.af.database.list("/jobs/", {query: {orderByChild : "companyKey", equalTo:someKey}})
+   }
+    */
+    
+    getFilteredItems(ev) {
+        console.log(ev.target.value);
+        // use subscribe and foreach for filtering
         var val = ev.target.value;
-
-        // if the value is an empty string don't filter the items
-//        if (val && val.trim() != '') {
-//            this.stores = this.stores.filter((item) => {
-//                return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-//            })
-//        }
+        this.items.subscribe((_items)=> {
+            this.filteredItems = [];
+            _items.forEach(item => {
+                if( item.name.toLowerCase().indexOf(val.toLowerCase()) > -1) {
+                    this.filteredItems.push(item);
+                } 
+            })
+        });        
     }
 
+}
+
+export class Item {
+    name: string;
+    aisle: number;
+    bin: number;
+    notes: string;
 }
