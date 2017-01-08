@@ -1,9 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { MyListsPage } from '../pages/mylists/mylists';
-import { FavoritePage } from '../pages/favorite/favorite';
 import { SearchPage } from '../pages/search/search';
+import { MyListsPage } from '../pages/mylists/mylists';
+import { AboutPage } from '../pages/about/about';
+
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { AngularFireModule } from 'angularfire2';
@@ -19,7 +20,7 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     MyListsPage,
-    FavoritePage,
+    AboutPage,
     SearchPage,
     TabsPage
   ],
@@ -31,7 +32,7 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     MyListsPage,
-    FavoritePage,
+    AboutPage,
     SearchPage,
     TabsPage
   ],
