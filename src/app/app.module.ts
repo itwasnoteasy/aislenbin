@@ -9,6 +9,7 @@ import { ListDetailPage } from '../pages/listdetail/listdetail';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { AngularFireModule } from 'angularfire2';
+
 export const firebaseConfig = {
     apiKey: "AIzaSyBCUUK7IaGytiOyiqPzGXKJNz__6Dof0Cc",
     authDomain: "aislenbin.firebaseapp.com",
@@ -39,6 +40,6 @@ export const firebaseConfig = {
     TabsPage,
       ListDetailPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

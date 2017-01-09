@@ -4,10 +4,10 @@
         <ion-icon name="add-circle" (click)="createNewList()" style="font-size: 2em;float:right;padding-right:5px;" color="light"></ion-icon>
     </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
     <ion-list>
-        <ion-item-sliding>
-            <ion-item *ngFor="let list of myLists | async" text-wrap> 
+        <ion-item-sliding *ngFor="let list of myLists | async">
+            <ion-item text-wrap> 
                 {{ list.name }} 
                 <button (click)="viewList(list)" ion-button color="primary" item-right>
                     View
@@ -15,7 +15,8 @@
             </ion-item>
             <ion-item-options side="right">
                 <button ion-button color="danger">
-                    <ion-icon name="trash"></ion-icon> Delete 
+                    <ion-icon name="trash"></ion-icon>  
+                    <span style="font-size:0.8em;">Delete</span>
                 </button>
             </ion-item-options>
         </ion-item-sliding>

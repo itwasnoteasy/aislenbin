@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {ListDetailPage} from '../listdetail/listdetail';
 
+
 @Component({
   selector: 'mylists',
   templateUrl: 'mylists.html'
