@@ -26,10 +26,17 @@ export class SearchPage {
         console.log(ev.target.value);
         // use subscribe and foreach for filtering
         var val = ev.target.value;
+if(val === undefined || val === null) {
+    val = '';
+}
         this.items.subscribe((_items)=> {
             this.filteredItems = [];
             _items.forEach(item => {
-                if( item.srchTxt.toLowerCase().indexOf(val.toLowerCase()) > -1) {
+                var _srchText = item.srchTxt;
+                if(_srchText === undefined) {
+                    _srchText = item.name;
+                }
+                if(_srchText.toLowerCase().indexOf(val.toLowerCase()) > -1) {
                     this.filteredItems.push(item);
                 } 
             })
