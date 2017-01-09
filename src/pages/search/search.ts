@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -31,7 +29,7 @@ export class SearchPage {
         this.items.subscribe((_items)=> {
             this.filteredItems = [];
             _items.forEach(item => {
-                if( item.name.toLowerCase().indexOf(val.toLowerCase()) > -1) {
+                if( item.srchTxt.toLowerCase().indexOf(val.toLowerCase()) > -1) {
                     this.filteredItems.push(item);
                 } 
             })
@@ -45,4 +43,6 @@ export class Item {
     aisle: number;
     bin: number;
     notes: string;
+    srchTxt: string;
+    thumbnail: string;
 }

@@ -10,9 +10,9 @@
   placeholder="Find item.."></ion-searchbar>
 <ion-list>
   <ion-item *ngFor="let item of filteredItems" text-wrap>
-   <ion-thumbnail *ngIf="item.thumbnail" item-left>
+   <ion-avatar *ngIf="item.thumbnail" item-left>
        <img src="{{item.thumbnail}}" />
-   </ion-thumbnail>
+   </ion-avatar>
  {{ item.name }}
   
    <ion-icon name="photos">{{item.aisle}}</ion-icon> 

@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { SearchPage } from '../pages/search/search';
 import { MyListsPage } from '../pages/mylists/mylists';
 import { AboutPage } from '../pages/about/about';
+import { ListDetailPage } from '../pages/listdetail/listdetail';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -22,7 +23,8 @@ export const firebaseConfig = {
     MyListsPage,
     AboutPage,
     SearchPage,
-    TabsPage
+    TabsPage,
+      ListDetailPage
   ],
   imports: [
       IonicModule.forRoot(MyApp),
@@ -34,7 +36,8 @@ export const firebaseConfig = {
     MyListsPage,
     AboutPage,
     SearchPage,
-    TabsPage
+    TabsPage,
+      ListDetailPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

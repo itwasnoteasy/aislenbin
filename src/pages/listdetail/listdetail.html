@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="dark" >
+    <ion-title>Item List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- Padding attribute gives the ios-outline look -->
+<ion-content>
+<ion-list>
+ <ion-item *ngFor="let item of filteredItems" text-wrap>
+   <ion-avatar *ngIf="(item|async)?.thumbnail" item-left>
+       <img src="{{(item|async)?.thumbnail}}" />
+   </ion-avatar>
+ {{ (item|async)?.name }}
+  
+   <ion-icon name="photos">{{(item|async)?.aisle}}</ion-icon> 
+      <ion-icon name="basket">{{(item|async)?.bin}}</ion-icon>
+      <p>
+    <ion-note style="font-size:0.8em;">{{(item|async)?.notes}}</ion-note>
+     </p>
+  </ion-item>
+  
+  
+    </ion-list>
+</ion-content>
