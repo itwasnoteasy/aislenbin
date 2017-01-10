@@ -6,6 +6,7 @@ import { MyListsPage } from '../pages/mylists/mylists';
 import { AboutPage } from '../pages/about/about';
 import { ListDetailPage } from '../pages/listdetail/listdetail';
 import { ItemDetailPage } from '../pages/itemdetail/itemdetail';
+import {AsyncItemDetailPage} from '../pages/async-item-detail/async-item-detail';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -27,7 +28,8 @@ export const firebaseConfig = {
     SearchPage,
     TabsPage,
     ListDetailPage,
-    ItemDetailPage
+    ItemDetailPage,
+    AsyncItemDetailPage
   ],
   imports: [
       IonicModule.forRoot(MyApp),
@@ -41,7 +43,8 @@ export const firebaseConfig = {
     SearchPage,
     TabsPage,
     ListDetailPage,
-    ItemDetailPage
+    ItemDetailPage,
+    AsyncItemDetailPage
   ],
 providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

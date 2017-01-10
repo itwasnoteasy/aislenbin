@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {AsyncItemDetailPage} from '../async-item-detail/async-item-detail';
 
 @Component({
   templateUrl: 'listdetail.html'
@@ -31,4 +32,11 @@ export class ListDetailPage {
 
         console.log(this.filteredItems);
     }
+    
+    viewItemDetail(item) {
+        this.navCtrl.push(AsyncItemDetailPage, {
+            item:item
+        });
+    }
+    
 }
