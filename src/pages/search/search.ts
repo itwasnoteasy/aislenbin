@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import { ItemDetailPage } from '../itemdetail/itemdetail';
 
 
 @Component({
@@ -26,9 +27,9 @@ export class SearchPage {
         console.log(ev.target.value);
         // use subscribe and foreach for filtering
         var val = ev.target.value;
-if(val === undefined || val === null) {
-    val = '';
-}
+        if(val === undefined || val === null) {
+            val = '';
+        }
         this.items.subscribe((_items)=> {
             this.filteredItems = [];
             _items.forEach(item => {
@@ -41,6 +42,12 @@ if(val === undefined || val === null) {
                 } 
             })
         });        
+    }
+    
+    viewItemDetail(item) {
+        this.navCtrl.push(ItemDetailPage, {
+            item:item
+        });
     }
 
 }

@@ -11,8 +11,8 @@ import {ListDetailPage} from '../listdetail/listdetail';
   templateUrl: 'mylists.html'
 })
 export class MyListsPage {
-myLists: FirebaseListObservable<List[]>
-      constructor(public navCtrl: NavController, public alertCtrl: AlertController,af: AngularFire) {
+myLists: FirebaseListObservable<any[]>
+      constructor(public navCtrl: NavController, public alertCtrl: AlertController,public af: AngularFire) {
           this.myLists = af.database.list('users/0/lists');
       }
     
@@ -37,6 +37,14 @@ myLists: FirebaseListObservable<List[]>
               text: 'Save',
               handler: data => {
                 console.log('Saved clicked'+data.listName);
+                var t;
+                this.myLists.subscribe((lists) => {
+                    t=lists;
+                });
+                if(t !== undefined && t.length >- 1) {
+                    const obsListItem = this.af.database.object('users/0/lists/'+t.length);
+                    obsListItem.set({name:data.listName, storeId: 0, id:t.length});
+                }
               }
             }
           ]
@@ -49,6 +57,11 @@ myLists: FirebaseListObservable<List[]>
         this.navCtrl.push(ListDetailPage, {
             list:list
         });
+    }
+    
+    deleteList(listId) {
+        const observableListItem = this.af.database.object('users/0/lists/'+listId);
+        observableListItem.remove();
     }
 }
 

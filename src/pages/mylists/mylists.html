@@ -1,21 +1,18 @@
 <ion-header>
     <ion-navbar color="light">
         <ion-title> My Lists </ion-title>
-        <ion-icon name="add-circle" (click)="createNewList()" style="font-size: 2em;float:right;padding-right:5px;" color="light"></ion-icon>
+        <ion-icon name="add-circle" (click)="createNewList()" style="font-size: 2em;float:right;padding-right:5px;" color="dark"></ion-icon>
     </ion-navbar>
 </ion-header>
 <ion-content>
     <ion-list>
         <ion-item-sliding *ngFor="let list of myLists | async">
-            <ion-item text-wrap> 
-                {{ list.name }} 
-                <button (click)="viewList(list)" ion-button color="primary" item-right>
-                    View
-                </button>
+            <ion-item text-wrap (click)="viewList(list)">
+                {{ list.name }}
             </ion-item>
             <ion-item-options side="right">
-                <button ion-button color="danger">
-                    <ion-icon name="trash"></ion-icon>  
+                <button ion-button color="danger" (click)="deleteList(list.id)">
+                    <ion-icon name="trash"></ion-icon>
                     <span style="font-size:0.8em;">Delete</span>
                 </button>
             </ion-item-options>

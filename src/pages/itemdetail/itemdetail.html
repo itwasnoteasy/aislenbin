@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-navbar color="light">
+        <ion-title>{{item.name}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <img src="{{item.thumbnail}}" />
+
+        <ion-card-content>
+            <ion-card-title>Aisle: {{item.aisle}}, Bin: {{item.bin}}</ion-card-title>
+        </ion-card-content>
+        <p padding style="margin-top:-20px;"> {{item.notes}}</p>
+    </ion-card>
+</ion-content>
