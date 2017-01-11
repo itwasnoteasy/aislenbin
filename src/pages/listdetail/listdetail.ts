@@ -8,37 +8,62 @@ import {ItemDetailPage} from '../itemdetail/itemdetail';
 })
 export class ListDetailPage {
 
-    listItems: FirebaseListObservable<any[]>
+    listItems: Array<any>;
     filteredItems: Array<any>;
     list: any;
     af: AngularFire;
+    sortBy: string;
     
     constructor(public navCtrl: NavController, public params: NavParams, af: AngularFire) {
         this.list = params.get('list');
         this.af = af;
+        this.sortBy = 'Aisle';
     
     }
     
     ngOnInit() {
-            this.listItems = this.af.database.list('users/0/lists/'+this.list.id+'/items');
-            this.listItems.subscribe((_items)=> {
-                this.filteredItems = [];
-                _items.forEach(item => {
-                    console.log('stores/'+this.list.storeId+'/items/'+item.id);
-                    this.af.database.object('stores/'+this.list.storeId+'/items/'+item.id).subscribe((_item) => {
+    this.af.database.list('users/0/lists/'+this.list.id+'/items').subscribe((_itemIds) => {
+        this.listItems = _itemIds;
+        });
+        
+this.filteredItems = [];
+            
+                this.listItems.forEach(item => {
+    this.af.database.object('stores/'+this.list.storeId+'/items/'+item.id).subscribe((_item) => {
                        this.filteredItems.push(_item);
                     });
                 
-                })
-            }); 
-
-        console.log(this.filteredItems);
+                });
+    
+        this.sortFilteredItems();
     }
     
     viewItemDetail(item) {
         this.navCtrl.push(ItemDetailPage, {
             item:item
         });
+    }
+    
+    toggleSort() {
+        if(this.sortBy == 'Aisle') {
+            this.sortBy = 'Item';
+        } else {
+            this.sortBy = 'Aisle';
+        }
+        this.sortFilteredItems();
+    }
+    
+    sortFilteredItems() {
+        if(this.sortBy == 'Aisle') {
+            this.filteredItems = this.filteredItems.sort(function(a, b) {
+            return parseInt(a.aisle) - parseInt(b.aisle);
+            });
+        } else {
+            this.filteredItems = this.filteredItems.sort(function(a, b) {
+                if(a.name > b.name) return 1;
+                else return 0;
+            });
+        }
     }
     
 }

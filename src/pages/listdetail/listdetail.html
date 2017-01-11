@@ -1,10 +1,12 @@
 <ion-header>
     <ion-navbar color="light">
         <ion-title>Item List</ion-title>
+        <ion-buttons end>
+            <button (click)="toggleSort()" ion-button clear small>{{sortBy}}↓</button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
-<!-- Padding attribute gives the ios-outline look -->
 <ion-content>
     <ion-list>
         <ion-item *ngFor="let item of filteredItems" text-wrap (click)="viewItemDetail(item)">
