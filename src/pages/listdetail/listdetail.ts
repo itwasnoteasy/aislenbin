@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import {AsyncItemDetailPage} from '../async-item-detail/async-item-detail';
+import {ItemDetailPage} from '../itemdetail/itemdetail';
 
 @Component({
   templateUrl: 'listdetail.html'
@@ -25,8 +25,10 @@ export class ListDetailPage {
                 this.filteredItems = [];
                 _items.forEach(item => {
                     console.log('stores/'+this.list.storeId+'/items/'+item.id);
-                   var _item =  this.af.database.object('stores/'+this.list.storeId+'/items/'+item.id);
-                this.filteredItems.push(_item);
+                    this.af.database.object('stores/'+this.list.storeId+'/items/'+item.id).subscribe((_item) => {
+                       this.filteredItems.push(_item);
+                    });
+                
                 })
             }); 
 
@@ -34,7 +36,7 @@ export class ListDetailPage {
     }
     
     viewItemDetail(item) {
-        this.navCtrl.push(AsyncItemDetailPage, {
+        this.navCtrl.push(ItemDetailPage, {
             item:item
         });
     }

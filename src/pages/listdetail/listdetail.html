@@ -8,14 +8,14 @@
 <ion-content>
     <ion-list>
         <ion-item *ngFor="let item of filteredItems" text-wrap (click)="viewItemDetail(item)">
-            <ion-avatar *ngIf="(item | async)?.thumbnail" item-left>
-                <img src="{{(item | async)?.thumbnail}}" />
+            <ion-avatar *ngIf="item.thumbnail" item-left>
+                <img src="{{item.thumbnail}}" />
             </ion-avatar>
-            {{ (item|async)?.name }}
-            <ion-icon name="photos">{{(item|async)?.aisle}}</ion-icon>
-            <ion-icon name="basket">{{(item|async)?.bin}}</ion-icon>
+            {{ item.name }}
+            <ion-icon name="photos">{{item.aisle}}</ion-icon>
+            <ion-icon name="basket">{{item.bin}}</ion-icon>
             <p>
-                <ion-note style="font-size:0.8em;">{{(item|async)?.notes}}</ion-note>
+                <ion-note style="font-size:0.8em;">{{item.notes}}</ion-note>
             </p>
         </ion-item>
     </ion-list>
